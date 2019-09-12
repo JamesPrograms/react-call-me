@@ -27,7 +27,6 @@ class Login extends Component {
                     登录&nbsp;/&nbsp;注册即表示您同意
                     <a href="https://chat.vchat.club/#/xyregister?appname=CallMe">CallMe用户协议</a>
                 </p>
-                {/*<MyConfirmMsgBox v-model="isMsgBoxShow"></MyConfirmMsgBox>*/}
             </div>
         );
     }
