@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Login from './views/Login';
-ReactDOM.render(<Login />, document.getElementById('App'));
+import App from './App';
+import './assets/less/index.less';
+
+
+ReactDOM.render(<App />, document.getElementById('App'));
 
