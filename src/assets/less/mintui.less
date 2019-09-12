@@ -1,0 +1,85 @@
+@import "variable.less";
+
+/*========= button部分重写start =========*/
+.mint-button {
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 0.16rem;
+  border-radius: 1rem;
+  display: block;
+}
+
+.mint-button--normal {
+  height: 0.45rem;
+}
+
+.mint-button--default {
+  border: 0 solid @gray4;
+  color: @gray7;
+  background-color: @white;
+  img {
+    width: 0.18rem;
+  }
+}
+.mint-button--primary {
+  color: @white;
+  font-weight: bold;
+  background-color: @green;
+  img {
+    width: 0.22rem;
+  }
+}
+.mint-button--danger {
+  color: @white;
+  font-weight: bold;
+  background-color: @red4;
+  letter-spacing: 0.10rem;
+  //img {
+  //  width: 0.22rem;
+  //}
+}
+/*========= button部分重写end =========*/
+
+/*========= indicator样式覆盖start =========*/
+.mint-swipe-indicators {
+  .mint-swipe-indicator {
+    background: @white;
+    opacity: 0.3;
+  }
+  .is-active {
+    opacity: 1;
+  }
+}
+/*========= indicator样式覆盖end =========*/
+
+/*========= MessageBox样式覆盖start =========*/
+.mint-msgbox-wrapper {
+  z-index: 10000!important;
+}
+.mint-msgbox-message {
+  color: @black3;
+}
+.mint-msgbox-btn.mint-msgbox-cancel {
+  color: @gray5;
+  font-size: 0.16rem;
+}
+.mint-msgbox-btn.mint-msgbox-confirm {
+  color: @red4;
+  font-size: 0.16rem;
+}
+/*========= MessageBox样式覆盖end =========*/
+
+/*========= Toast样式覆盖start =========*/
+.mint-toast {
+  z-index: 10000;
+}
+/*========= Toast样式覆盖end =========*/
+
+/*======== indicator样式覆盖start =======*/
+.mint-indicator-wrapper {
+  z-index: 10000;
+}
+.mint-indicator-mask {
+  z-index: 9999;
+}
+/*======== indicator样式覆盖end =======*/
