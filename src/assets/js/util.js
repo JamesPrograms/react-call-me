@@ -2,14 +2,9 @@
  * 共通方法
  */
 
-
-import router from '../../router.js'; // 引入路由器对象
-import {Toast} from 'mint-ui';
 import http from './http.js';
-import store from '../../store.js';
 import global from './global.js'; // 引入全局常量
 import md5 from 'js-md5'; // 引入md5加密
-import aes from './aes'; // 引入aes加解密算法
 
 const usrAgent = window.navigator.userAgent; // user agent
 

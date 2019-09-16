@@ -1,15 +1,12 @@
 import React from 'react';
 import Login from './views/Login';
+import util from '@/src/assets/js/util'
+console.log(util.goPage)
 
 class App extends React.Component {
     render () {
         return (
             <div>
-                {/*<HeaderBar/>*/}
-                {/*<main style={mainStyles}>*/}
-                {/*    {this.props.children}*/}
-                {/*</main>*/}
-                {/*<FooterBar/>*/}
                 <Login/>
             </div>
         )
