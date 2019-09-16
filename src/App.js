@@ -1,15 +1,20 @@
 import React from 'react';
 import Login from './views/Login';
-import util from '@/src/assets/js/util'
-console.log(util.goPage)
+// import util from 'assets/js/util'
+import {Switch, Route, BrowserRouter, Redirect} from 'react-router-dom'
 
 class App extends React.Component {
-    render () {
+    render() {
         return (
-            <div>
-                <Login/>
-            </div>
+            <BrowserRouter>
+                <Switch>
+                    {/*<Route exact path="/" component={Index}/>*/}
+                    <Route exact path="/login" component={Login}/>
+                    {/*<Redirect from="*" to="/"/>*/}
+                </Switch>
+            </BrowserRouter>
         )
     }
 }
+
 export default App
