@@ -1,13 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import Button from '../../components/Button'
-import './index.less';
+import './index.less'
 
 class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            isShow:true
-        }
     }
     render() {
         return (
@@ -19,7 +16,7 @@ class Login extends Component {
                         <p className="app-desc">新生代视频社交平台</p>
                 </div>
                 <div className="login-module">
-                    <Button btnClick={this.btnClick}>
+                    <Button text="登录" btnClick={this.btnClick.bind(this)}>
                         <img style={{width:'0.2rem',height:'0.2rem'}} src={require("../../assets/image/icon/icon_login.png")}/>
                     </Button>
                 </div>
@@ -31,7 +28,7 @@ class Login extends Component {
         );
     }
     btnClick() {
-        console.log(1);
+        this.props.history.push('/loginWithSms');
     }
 }
 

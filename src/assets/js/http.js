@@ -6,8 +6,7 @@ import util from './util.js';
 import svrCode from './serverCode.js';
 // 引入qs模块，用来序列化post类型的数据
 import qs from 'qs';
-import router from '../../router.js';
-import {Indicator} from 'mint-ui';
+import {Toast} from 'antd-mobile'
 
 
 // 创建axios实例， 参数对象为默认配置对象
@@ -29,7 +28,7 @@ Axios.interceptors.request.use(
 
         // 没有没有额外配置或没加loading标志，都给请求加上loading
         if (!extraOptionObj || !extraOptionObj.noLoading) {
-            Indicator.open('加载中...');
+            Toast.loading('加载中...',10);
         }
 
         // 如果存在参数以外的额外配置，在参数配置项中做相应操作
@@ -75,7 +74,7 @@ Axios.interceptors.response.use(
          **/
 
         // 关闭indicator
-        Indicator.close();
+        Toast.hide();
 
         // 用toast弹出接口返回的错误码
         let errCode = svrCode.errCode;
@@ -91,7 +90,6 @@ Axios.interceptors.response.use(
                     util.rmStorage('loginInfo');
                     setTimeout(function(){
                         util.goPage('login');
-                        console.log(router);
                     },1500)
 
                 }
@@ -104,7 +102,7 @@ Axios.interceptors.response.use(
     },
     error => {
         // 关闭indicator
-        Indicator.close();
+        Toast.hide();
 
         // 请求失败做出相应提醒
         let errMsg;

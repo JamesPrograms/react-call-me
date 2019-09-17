@@ -10,7 +10,7 @@ class Button extends Component {
         };
     }
     render() {
-        const { children,width,height,bRadius,bgColor,text,textColor} = this.props;
+        const { children,width,height,bRadius,bgColor,text,textColor,marginTop} = this.props;
         return (
             <div className="center"
                 style={{
@@ -18,6 +18,7 @@ class Button extends Component {
                 height:height,
                 backgroundColor: bgColor,
                 borderRadius: bRadius,
+                marginTop
             }}
                  onClick={this.btnClick.bind(this)}
             >
@@ -37,7 +38,8 @@ Button.propTypes = {
     bRadius: propTypes.string,
     bgColor:propTypes.string,
     text: propTypes.string,
-    textColor: propTypes.string
+    textColor: propTypes.string,
+    marginTop: propTypes.string,
 };
 Button.defaultProps = {
     width: '3rem',
@@ -45,7 +47,8 @@ Button.defaultProps = {
     bRadius: '1rem',
     bgColor: '#F9517E',
     text: '确定',
-    textColor: '#FFFFFF'
+    textColor: '#FFFFFF',
+    marginTop: '0'
 };
 
 export default Button;
