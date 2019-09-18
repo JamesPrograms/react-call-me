@@ -1,0 +1,150 @@
+@import "../../assets/less/variable";
+
+// 视频秀以外页面的tabbar样式
+.tab-bar {
+  width: 100%;
+  height: 0.48rem;
+  position: fixed;
+  display: flex;
+  bottom: 0;
+  justify-content: space-around;
+  font-size: 0.1rem;
+
+  background-color: @white;
+  border-top: 1px solid #EFEFEF;
+
+  .icon-beauty-list {
+    background-image: url('../../assets/image/icon/tabBar/icon_home@3x.png');
+    background-size: cover;
+  }
+
+  .icon-beauty-ranking {
+    background: url('../../assets/image/icon/tabBar/icon_phb@3x.png');
+    background-size: cover;
+  }
+
+  .icon-beauty-video {
+    background: url('../../assets/image/icon/tabBar/icon_spx@3x.png');
+    background-size: cover;
+  }
+
+  .icon-beauty-news {
+    background: url('../../assets/image/icon/tabBar/icon_xx@3x.png');
+    background-size: cover;
+    position: relative;
+
+    .red-point {
+      position: absolute;
+      width: 0.06rem;
+      height: 0.06rem;
+      background-color: #F9517E;
+      border-radius: 100%;
+      top: 0.01rem;
+      right: 0.01rem;
+    }
+  }
+
+  .icon-beauty-info {
+    background: url('../../assets/image/icon/tabBar/icon_wd@3x.png');
+    background-size: cover;
+  }
+
+  .router-link-active {
+    color: @red4;
+
+    .icon-beauty-list {
+      background: url('../../assets/image/icon/tabBar/icon_home_active@3x.png');
+      background-size: cover;
+    }
+
+    .icon-beauty-ranking {
+      background: url('../../assets/image/icon/tabBar/icon_phb_active@3x.png');
+      background-size: cover;
+    }
+
+    .icon-beauty-video {
+      background: url('../../assets/image/icon/tabBar/icon_spx@3x.png');
+      background-size: cover;
+    }
+
+    .icon-beauty-news {
+      background: url('../../assets/image/icon/tabBar/icon_xx_active@3x.png');
+      background-size: cover;
+    }
+
+    .icon-beauty-info {
+      background: url('../../assets/image/icon/tabBar/icon_wd_active@3x.png');
+      background-size: cover;
+    }
+  }
+
+  a {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: @gray8;
+
+    div {
+      width: 0.24rem;
+      height: 0.24rem;
+    }
+
+    p {
+      margin-top: 0.02rem;
+    }
+  }
+}
+
+// 视频秀页面的tabbar样式
+.video-tab-bar {
+  background-color: rgba(0, 0, 0, 0);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  background-image: linear-gradient(-180deg, rgba(56, 40, 40, 0.00) 2%, rgba(56, 40, 40, 0.30) 98%);
+
+  a {
+    color: @white;
+    opacity: 0.5;
+  }
+
+  .icon-beauty-list {
+    background: url('../../assets/image/icon/tabBar/icon_home2@3x.png');
+    background-size: cover;
+  }
+
+  .icon-beauty-ranking {
+    background: url('../../assets/image/icon/tabBar/icon_phb2@3x.png');
+    background-size: cover;
+  }
+
+  .icon-beauty-video {
+    background: url('../../assets/image/icon/tabBar/icon_spx2@3x.png');
+    background-size: cover;
+  }
+
+  .icon-beauty-news {
+    background: url('../../assets/image/icon/tabBar/icon_xx2@3x.png');
+    background-size: cover;
+  }
+
+  .icon-beauty-info {
+    background: url('../../assets/image/icon/tabBar/icon_wd2@3x.png');
+    background-size: cover;
+  }
+
+  .router-link-active {
+    color: @white;
+    opacity: 1;
+
+    .icon-beauty-video {
+      background: url('../../assets/image/icon/tabBar/icon_spx2@3x.png');
+      background-size: cover;
+    }
+  }
+}
+
+// 安卓端浏览器tab-bar
+.android-origin-browser {
+  background: black;
+}
