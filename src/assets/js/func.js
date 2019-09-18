@@ -1,8 +1,6 @@
 // 功能方法部分
-import store from '../../store.js';
 import util from './util';
 import http from './http';
-import { MessageBox } from 'mint-ui';
 
 // 点击开启视频聊天
 function chatByVideo(beautyInfo) {
@@ -18,7 +16,7 @@ function chatByVideo(beautyInfo) {
         let resData = res.dataCollection;
         if (res.resultCode === 11003) {
             // 余额不足提醒充值
-            MessageBox({
+           /* MessageBox({
                 title: '温馨提示',
                 message: '您的余额不足，快去充值享受与主播的独处时光吧！',
                 showCancelButton: true,
@@ -26,7 +24,7 @@ function chatByVideo(beautyInfo) {
                 if (action === 'confirm') {
                     util.goPage('buyDiamond');
                 }
-            });
+            });*/
             return;
 
         }

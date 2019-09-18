@@ -169,8 +169,12 @@ const getParamByName = function (name) {
 };
 
 // 封装toast
-const toast = function (msg) {
-    Toast.info(msg,1.5)
+const toast = function (msg,cb) {
+    Toast.info(msg,1.5,()=> {
+        if (cb) {
+            cb();
+        }
+    })
 };
 
 const getVipInfo = function () {

@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Button from '../../components/Button'
 import util from 'js/util'
 import http from 'js/http'
+import func from 'js/func'
 import './index.less';
 
 let timer = null;
@@ -100,20 +101,20 @@ class LoginWithSms extends Component {
 
     btnClick() {
         let that = this,
-            phoneNum = that.phoneNum;
+            phoneNum = that.state.phoneNum;
 
-        if (!this.util.checkPhoneNum(phoneNum)) {
+        if (!util.checkPhoneNum(phoneNum)) {
             return;
         }
-        if (!this.smsNum.length) {
-            this.util.toast('请输入验证码');
+        if (!that.state.smsNum.length) {
+            util.toast('请输入验证码');
             return;
         }
         // 发起登陆请求
-        this.http.post('user/userLogin/login', {
-            smsCode: that.smsNum,
+        http.post('user/userLogin/login', {
+            smsCode: that.state.smsNum,
             appId: 1, // 写死传1
-            channel: that.util.getStorage('cpsChain') ? that.util.getStorage('cpsChain')[1] : 2201,
+            channel: 2201,
             type: 3, // 1.QQ登录 2.微信登录 3.验证码登录 4.密码登录 userId 第三方账号 userName 昵称
             os: 0,   // 写死传0
             userMobile: phoneNum, // 手机号
@@ -121,25 +122,25 @@ class LoginWithSms extends Component {
         }).then(res => {
             if (res.resultCode === 1001) {
                 // 保存登陆信息
-                that.func.saveLoginInfo(res.dataCollection);
+                func.saveLoginInfo(res.dataCollection);
 
                 // 登陆成功提示后跳转页面
-                that.util.toast('登录成功!');
-                setTimeout(() => {
-                    // 跳转到指定页面（首页或者目标页）
-                    that.util.jumpToAimPage();
-                }, 1500);
+                util.toast('登录成功！',()=> {
+                    that.props.history.push('/beautyList');
+                });
 
                 // 清除正在进行的定时器
-                if (that.timer) {
-                    clearInterval(that.timer);
+                if (timer) {
+                    clearInterval(timer);
                 }
             }
         }).catch(err => {
-            if (that.timer) {
-                clearInterval(that.timer);
-                that.isGetSmsNum = false;
-                that.text = '获取验证码';
+            if (timer) {
+                clearInterval(timer);
+                that.setState({
+                    isGetSmsNum: false,
+                    text: '获取验证码',
+                });
             }
         });
 
