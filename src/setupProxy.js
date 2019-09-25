@@ -6,7 +6,7 @@ module.exports = function(app) {
             '/api', {
                 // https://chat.vchat.club/webapi/
                 // http://mgr.vchat.club:19001
-                target: 'http://mgr.vchat.club:19001',
+                target: 'https://chat.vchat.club/webapi/',
                 pathRewrite: {'^/api': '/'},
                 changeOrigin: true
             }

@@ -1,0 +1,151 @@
+@import "../../assets/less/variable";
+
+.banner {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.15rem 0.15rem 0;
+  height: 0.96rem;
+  position: fixed;
+  left: 0;
+  top: 0;
+  .swiper-wrap {
+    width: 100%;
+    height: 100%;
+    .img-wrap {
+      width: 100%;
+      height: 100%;
+      background-color: @white;
+      display: flex;
+      justify-content: center;
+      .album-img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+        border-radius: 0.06rem;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.navBar {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 3000;
+  background-color: @white;
+  padding: 0.15rem 0 0.15rem 0.15rem;
+  box-sizing: border-box;
+  height: 0.51rem;
+  overflow-x: scroll;
+  // 解决滑动卡顿问题: 即使用滚动回弹效果，当手指从触屏上一开，内容会保持一段时间滚动效果
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap; //可以强制目前布局而不让子元素自动换行
+
+  li {
+    display: inline-block;
+    margin-right: 0.11rem;
+    height: 0.21rem;
+    line-height: 0.21rem;
+    font-size: 0.14rem;
+    padding: 0 0.09rem;
+    color: @black1;
+  }
+
+  .active {
+    background-color: @red4;
+    border-radius: 1rem;
+    color: @white;
+    font-weight: bold;
+  }
+}
+
+
+.load-more {
+  overflow: scroll;
+  // 解决上拉滑动卡顿的问题
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  height: auto;
+  margin-top: 0.51rem;
+  margin-bottom: 0.49rem;
+}
+
+.list-view-section-body {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 0.15rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.list-item {
+  width: 1.7rem;
+
+  .cover-part {
+    width: 100%;
+    height: 1.7rem;
+    border-radius: 0.08rem;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0.08rem;
+    }
+
+    .status {
+      width: 0.08rem;
+      height: 0.08rem;
+      position: absolute;
+      right: 0.08rem;
+      bottom: 0.08rem;
+      border-radius: 50%;
+    }
+
+    // 忙碌
+    .status-bgc-3 {
+      background-color: #FF7D7D;
+    }
+
+    // 空闲
+    .status-bgc-2 {
+      background-color: #14E952;
+    }
+
+    // 勿扰
+    .status-bgc-1 {
+      background-color: #BDBDBD;
+    }
+  }
+
+  .name-grade {
+    height: 0.14rem;
+    padding: 0.1rem 0 0.15rem;
+    color: @black1;
+    font-size: 0.14rem;
+    font-weight: bold;
+    display: flex;
+
+    span {
+      display: inline-block;
+      max-width: 1.26rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    img {
+      height: 0.14rem;
+      width: auto;
+      max-width: 0.31rem;
+      margin-left: 0.06rem;
+    }
+  }
+}
+
+
+
