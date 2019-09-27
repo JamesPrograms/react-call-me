@@ -2,6 +2,7 @@ import React from 'react';
 import Login from './views/Login';
 import LoginWithSms from './views/LoginWithSms';
 import BeautyList from './views/BeautyList';
+import BeautyListItem from './views/BeautyListItem';
 import BeautyRanking from './views/BeautyRanking';
 import BeautyVideoPlaying from './views/BeautyVideoPlaying';
 import BeautyChatList from './views/BeautyChatList';
@@ -21,6 +22,7 @@ class App extends React.Component {
                     <Route exact path="/beautyVideoPlaying" component={BeautyVideoPlaying}/>
                     <Route exact path="/beautyChatList" component={BeautyChatList}/>
                     <Route exact path="/beautyCustomInfo" component={BeautyCustomInfo}/>
+                    <Route exact path="/beautyListItem" component={BeautyListItem}/>
                 </Switch>
             </Router>
         )

@@ -1,0 +1,355 @@
+@import "../../assets/less/variable";
+
+.wrapper {
+  overflow: scroll;
+  padding: 0;
+  // 解决上拉滑动卡顿的问题
+  -webkit-overflow-scrolling: touch;
+}
+
+.swipper-content {
+  width: 100%;
+  height: 3.75rem;
+}
+
+.tabbar {
+  width: 100%;
+  padding: 0 0.15rem;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  background-color: @white;
+  height: 0.56rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .img-btn {
+    width: 0.36rem;
+    height: 0.36rem;
+  }
+
+  .video-btn {
+    width: 1.83rem;
+    height: 0.36rem;
+    background-image: linear-gradient(-270deg, #A1EC0B 0%, #67CB00 100%);
+    border-radius: 1rem;
+    font-size: 0.14rem;
+    font-weight: bold;
+    display: flex;
+    color: @white;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      height: 0.16rem;
+      margin-right: 0.05rem;
+    }
+  }
+  .video-not-available {
+    background-image: none;
+    background-color: @gray4;
+  }
+}
+
+.basic-info {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 0.15rem;
+  margin-top: 0.2rem;
+
+  .nickname-rank {
+    display: flex;
+
+    span {
+      max-width: 2rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 0.2rem;
+      font-weight: bold;
+      color: @black1;
+    }
+
+    img {
+      height: 0.16rem;
+      align-self: flex-end;
+      margin-left: 0.05rem;
+    }
+  }
+
+  .chat-price {
+    height: 0.16rem;
+    margin-top: 0.06rem;
+
+    > span {
+      display: inline-block;
+      height: 100%;
+      line-height: 0.14rem;
+      font-size: 0.1rem;
+      padding: 0 0.04rem;
+      box-sizing: border-box;
+      border-radius: 0.04rem;
+
+      img {
+        height: 0.09rem;
+      }
+
+      span {
+        margin-left: 0.02rem;
+      }
+    }
+
+    .unit-price, .audio-price {
+      color: @red4;
+      border: 1px solid @red4;
+      margin-right: 0.04rem;
+    }
+
+    .answer-rate {
+      img {
+        height: 0.1rem;
+      }
+
+      color: @gray5;
+      border: 1px solid @gray5;
+    }
+
+  }
+
+  .like-fans {
+    height: 0.14rem;
+    display: flex;
+    align-items: flex-end;
+    margin-top: 0.2rem;
+
+    .stress-word {
+      color: @black1;
+      font-size: 0.14rem;
+      font-weight: bold;
+    }
+
+    .normal-word {
+      color: #9096A2;
+      font-size: 0.12rem;
+      margin-left: 0.04rem;
+    }
+
+    .vertical-line {
+      width: 0.02rem;
+      height: 0.08rem;
+      align-self: center;
+      background-color: #E9EBEF;
+      border-radius: 0.02rem;
+      margin: 0 0.1rem;
+    }
+  }
+
+  .intro {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: 0.2rem;
+    font-size: 0.14rem;
+    color: @black1;
+  }
+}
+
+.navbar-part {
+  width: 100%;
+  margin-top: 0.4rem;
+
+  .navbar {
+    width: 100%;
+    height: 0.25rem;
+    box-sizing: border-box;
+    display: flex;
+    padding-left: 0.15rem;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-bottom: 0.02rem solid @gray1;
+    font-size: 0.16rem;
+    color: #9096A2;
+
+    li {
+      height: 100%;
+      padding: 0 0.15rem;
+      margin-right: 0.15rem;
+    }
+
+    .active {
+      color: @black1;
+      border-bottom: 0.02rem solid @red4;
+    }
+
+  }
+}
+
+.nav-intro-content {
+  width: 100%;
+  padding: 0 0.15rem;
+  box-sizing: border-box;
+
+  .intro-item-title {
+    font-size: 0.12rem;
+    color: @black1;
+  }
+
+  // 亲密榜
+  .sweet-rank {
+    margin-top: 0.4rem;
+
+    .sweet-list {
+      width: 100%;
+      margin-top: 0.15rem;
+      height: 0.35rem;
+      display: flex;
+
+      img {
+        width: 0.35rem;
+        height: 0.35rem;
+        border-radius: 50%;
+        margin-right: 0.09rem;
+      }
+    }
+  }
+
+  // 标签部分
+  .label-list {
+    width: 100%;
+    margin-top: 0.3rem;
+
+    .label-wrap {
+      margin-top: 0.08rem;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+
+      span {
+        font-size: 0.14rem;
+        color: @white;
+        border-radius: 0.12rem;
+        padding: 0.05rem 0.1rem;
+        margin: 0.07rem 0.1rem 0 0;
+      }
+
+    }
+  }
+
+  // 个人信息部分
+  .personal-info {
+    width: 100%;
+    margin-top: 0.3rem;
+
+    .personal-info-content {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      font-size: 0.14rem;
+      color: #9096A2;
+
+      .info-item {
+        border: 1px solid #D2D5D9;
+        border-radius: 0.12rem;
+        padding: 0.03rem 0.09rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0.15rem 0.08rem 0 0;
+
+        img {
+          height: 0.13rem;
+        }
+
+        .info {
+          margin-left: 0.02rem;
+        }
+      }
+    }
+  }
+
+  // 礼物柜部分
+  .gift-box {
+    width: 100%;
+    margin-top: 0.3rem;
+
+    .gift-list {
+      width: 100%;
+      margin: 0.15rem 0 1rem;
+      display: flex;
+
+      img {
+        width: 0.35rem;
+        height: 0.35rem;
+        margin-right: 0.09rem;
+      }
+    }
+  }
+}
+
+.nav-video-content {
+  width: 100%;
+  margin: 0.08rem 0 1rem;
+  div {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    // 此处用于解决换行之后排列问题
+    &:after {
+      content: '';
+      width: 1.23rem;
+    }
+    .video-cover {
+      width: 1.24rem;
+      height: 1.6rem;
+      margin-top: 0.02rem;
+      position: relative;
+
+      .cover-img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+        display: inline-block;
+      }
+      .play-icon {
+        width: 0.24rem;
+        height: 0.24rem;
+        position: absolute;
+        left:50%;
+        top:50%;
+        transform:translate(-50%,-50%);
+      }
+    }
+  }
+  // 无视频文字样式
+  .no-video {
+    width: 100%;
+    margin-top: 0.2rem;
+    text-align: center;
+    font-size: 0.14rem;
+    color: #8B8B8B;
+  }
+}
+
+.video-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background-color: black;
+
+  .close-video {
+    width: 0.35rem;
+    height: 0.35rem;
+    display: block;
+    position: absolute;
+    top: 0.15rem;
+    left: 0.15rem;
+    opacity: 0.8;
+    z-index: 9999;
+  }
+}

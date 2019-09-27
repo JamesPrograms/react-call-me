@@ -10,7 +10,7 @@ let globalParams = {
         appId: 'f0593ac5c49142419e42f5aec112a34f',
     },
     isDevEnv: process.env.NODE_ENV === 'development',
-    isTest: 0, // 1：线上测试版本，0：线上真实版本
+    isTest: 1, // 1：线上测试版本，0：线上真实版本
     hasVideoChat: true,
     socketUrl() {
         // 如果是测试环境或者开发环境，用测试服的socket url

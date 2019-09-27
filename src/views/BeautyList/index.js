@@ -115,7 +115,9 @@ class BeautyList extends Component {
         let {homeNavBarData, activeMenuIndex} = this.state;
         const row = (rowData, sectionID, rowID) => {
             return (
-                <div className="list-item" key={rowID}>
+                <div className="list-item" key={rowID}
+                     onClick={() => {this.props.history.push('/beautyListItem',{userId: rowData.userId})}}
+                >
                     <div className="cover-part">
                         <img src={rowData.cover}/>
                         <p className={`status 'status-bgc-'+ ${rowData.status}`}></p>
