@@ -69,6 +69,23 @@ class MySwiper extends Component {
                         }
                     </Carousel>
                 </div>
+
+                {
+                    isShowBigSwiper &&
+                    <div className="big-swiper-wrap">
+                        <Carousel selectedIndex={curSmallSwiperIndex} style={{height: '100vh'}}>
+                            {
+                                albumList.map((albumSrc, index) => {
+                                    return (<div key={index} style={{height: '100vh'}}>
+                                        <div className="img-wrap" onClick={this.closeBigSwiper.bind(this, index)}>
+                                            <img src={albumSrc} className="album-img"/>
+                                        </div>
+                                    </div>)
+                                })
+                            }
+                        </Carousel>
+                    </div>
+                }
             </div>
         );
     }

@@ -1,6 +1,8 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import http from 'js/http'
+import util from 'js/util'
 import MySwiper from 'components/MySwiper'
+import MyConfirmMsgBox from 'components/MyConfirmMsgBox'
 import './index.less'
 
 class BeautyListItem extends Component {
@@ -39,7 +41,7 @@ class BeautyListItem extends Component {
                 stateInfo = {
                     reqData,
                     curStatus: reqData.status,
-                    curUserId:userId,
+                    curUserId: userId,
                     albumList
                 };
 
@@ -79,22 +81,35 @@ class BeautyListItem extends Component {
     // 点击切换navbar的事件方法
     navbarChage(activeTabIndex) {
         // 每次点击更换当前的activeIndex
-        // this.setState({activeTabIndex});
+        this.setState({activeTabIndex});
     }
 
     // 点击播放视频
     playVideo(index) {
-        // this.setState({isActiveVideo: index});
-        // document.querySelectorAll('.my-video')[index].play();
+        this.setState({isActiveVideo: index});
+        document.querySelectorAll('.my-video')[index].play();
     }
 
     closeVideo(index) {
-        // document.querySelectorAll('.my-video')[index].pause();
-        // this.setState({isActiveVideo: null});
+        document.querySelectorAll('.my-video')[index].pause();
+        this.setState({isActiveVideo: null});
     }
 
+    showMsgBox = () => {
+        // 安卓系统中的微信，弹窗提示
+        if (util.isWechatEnv() && util.curDevice() === 'android') {
+            util.downLoadApp('tip');
+        } else {
+            this.setState({isMsgBoxShow: true});
+        }
+    };
+
+    hideConfirmMsgBox = () => {
+        this.setState({isMsgBoxShow: false});
+    };
+
     render() {
-        let {reqData,videoLength,giftIconList,sweetList,isActiveVideo,activeTabIndex,albumList,curStatus} = this.state;
+        let {reqData, videoLength, giftIconList, sweetList, isActiveVideo, activeTabIndex, albumList,isMsgBoxShow, curStatus} = this.state;
         return (
             <div className="wrapper">
                 <div className="swipper-content">
@@ -117,14 +132,14 @@ class BeautyListItem extends Component {
                     </span>
                         <span className="answer-rate">
                         <img src={require("../../assets/image/icon/icon_icon_Answer_rate_iphone@3x.png")}/>
-                            <span>{reqData.answerRate ? Math.round(reqData.answerRate/100 ): 100}%</span>
+                            <span>{reqData.answerRate ? Math.round(reqData.answerRate / 100) : 100}%</span>
                     </span>
                     </div>
                     <div className="like-fans">
-                        <span className="stress-word">{ reqData.followNum > 9999 ? '9999+' : reqData.followNum }</span>
+                        <span className="stress-word">{reqData.followNum > 9999 ? '9999+' : reqData.followNum}</span>
                         <span className="normal-word">关注</span>
                         <span className="vertical-line"></span>
-                        <span className="stress-word">{ reqData.fansNum > 9999 ? '9999+' : reqData.fansNum }</span>
+                        <span className="stress-word">{reqData.fansNum > 9999 ? '9999+' : reqData.fansNum}</span>
                         <span className="normal-word">粉丝</span>
                     </div>
                     <div className="intro">{reqData.intro}</div>
@@ -132,128 +147,140 @@ class BeautyListItem extends Component {
 
                 <div className="navbar-part">
                     <ul className="navbar">
-                        <li className="{active: activeTabIndex === 0}" onClick={this.navbarChage.bind(this,0)}>介绍</li>
-                        <li className="{active: activeTabIndex === 1}" onClick={this.navbarChage.bind(this,1)}>视频 {videoLength}</li>
+                        <li className={`${activeTabIndex === 0 ? 'active' : ''}`}
+                            onClick={this.navbarChage.bind(this, 0)}>介绍
+                        </li>
+                        <li className={`${activeTabIndex === 1 ? 'active' : ''}`}
+                            onClick={this.navbarChage.bind(this, 1)}>视频 {videoLength}</li>
                     </ul>
                 </div>
 
-                <div className="nav-intro-content" v-show="activeTabIndex === 0">
-                    {
-                        (sweetList && sweetList.length > 0) &&
-                        <div className="sweet-rank">
-                            <p className="intro-item-title">亲密榜</p>
-                            <div className="sweet-list">
-                                {
-                                    sweetList.map((item,index) =>{
-                                        return <img key={index} src={item.portrait}/>
-                                    })
-                                }
-                            </div>
-                        </div>
-                    }
+                {
+                    activeTabIndex === 0 ? (
+                        <div className="nav-intro-content">
+                            {
+                                (sweetList && sweetList.length > 0) &&
+                                <div className="sweet-rank">
+                                    <p className="intro-item-title">亲密榜</p>
+                                    <div className="sweet-list">
+                                        {
+                                            sweetList.map((item, index) => {
+                                                return <img key={index} src={item.portrait}/>
+                                            })
+                                        }
+                                    </div>
+                                </div>
+                            }
 
-                    {
-                        (reqData.labels && reqData.labels.length > 0) &&
-                        <div className="label-list">
-                            <p className="intro-item-title">标签</p>
-                            <div className="label-wrap">
-                                {
-                                    reqData.labels.map((item,index) =>{
-                                        return <span key={index} style={{backgroundColor: item.color}}>{item.name}</span>
-                                    })
-                                }
-                            </div>
-                        </div>
-                    }
+                            {
+                                (reqData.labels && reqData.labels.length > 0) &&
+                                <div className="label-list">
+                                    <p className="intro-item-title">标签</p>
+                                    <div className="label-wrap">
+                                        {
+                                            reqData.labels.map((item, index) => {
+                                                return <span key={index}
+                                                             style={{backgroundColor: item.color}}>{item.name}</span>
+                                            })
+                                        }
+                                    </div>
+                                </div>
+                            }
 
 
-                    <div className="personal-info">
-                        <p className="intro-item-title">个人信息</p>
-                        <div className="personal-info-content">
+                            <div className="personal-info">
+                                <p className="intro-item-title">个人信息</p>
+                                <div className="personal-info-content">
                     <span className="info-item">
                         {
-                            reqData.sex == 1 ? <img src={require("../../assets/image/icon/icon_boy.png")}/> :  <img src={require("../../assets/image/icon/icon_girl.png")}/>
+                            reqData.sex == 1 ? <img src={require("../../assets/image/icon/icon_boy.png")}/> :
+                                <img src={require("../../assets/image/icon/icon_girl.png")}/>
                         }
                         <span className="info">{reqData.age}</span>
                     </span>
-                            <span className="info-item">
+                                    <span className="info-item">
                         <img src={require("../../assets/image/icon/icon_addr.png")}/>
-                        <span className="info">{reqData.address} {reqData.distance ? (reqData.distance).toFixed(1) + 'km' : ''}</span>
+                        <span
+                            className="info">{reqData.address} {reqData.distance ? (reqData.distance).toFixed(1) + 'km' : ''}</span>
                     </span>
-                            <span className="info-item">
+                                    <span className="info-item">
                         <img src={require('../../assets/image/icon/icon_id.png')}/>
                         <span className="info">ID:{reqData.showId}</span>
                     </span>
-                        </div>
-                    </div>
-                    {
-                        (giftIconList && giftIconList.length > 0) &&
-                        <div className="gift-box">
-                            <p className="intro-item-title">礼物柜</p>
-                            <div className="gift-list">
-                                {
-                                    giftIconList.map((item,index) => {
-                                        return <img key={index} src={item}/>
-                                    })
-                                }
+                                </div>
                             </div>
+                            {
+                                (giftIconList && giftIconList.length > 0) &&
+                                <div className="gift-box">
+                                    <p className="intro-item-title">礼物柜</p>
+                                    <div className="gift-list">
+                                        {
+                                            giftIconList.map((item, index) => {
+                                                return <img key={index} src={item}/>
+                                            })
+                                        }
+                                    </div>
+                                </div>
+                            }
                         </div>
-                    }
-                </div>
-
-                <div className="nav-video-content" style={{display: activeTabIndex === 1}}>
-                    {
-                        (reqData.videos && reqData.videos.length > 0) ?
-                            <div>
-                                {
-                                    reqData.videos.map((item,index) => {
-                                        return (
-                                            <div className="video-cover"
-                                                 key={index}
-                                                 onClick={this.playVideo(this,index)}
-                                                >
-                                                <img src={item.coverUrl} className="cover-img"/>
-                                                <img src={require("../../assets/image/icon/icon_play.png")} className="play-icon"  onClick={this.playVideo(this,index)}/>
-                                            </div>
-                                        )
-                                    })
-                                }
-                            </div> : <p className="no-video">暂时没有视频</p>
-                    }
-                </div>
+                    ) : (
+                        <div className="nav-video-content">
+                            {
+                                (reqData.videos && reqData.videos.length > 0) ?
+                                    <div>
+                                        {
+                                            reqData.videos.map((item, index) => {
+                                                return (
+                                                    <div className="video-cover"
+                                                         key={index}
+                                                         onClick={this.playVideo.bind(this, index)}
+                                                    >
+                                                        <img src={item.coverUrl} className="cover-img"/>
+                                                        <img src={require("../../assets/image/icon/icon_play.png")}
+                                                             className="play-icon"
+                                                             onClick={this.playVideo.bind(this, index)}/>
+                                                    </div>
+                                                )
+                                            })
+                                        }
+                                    </div> : <p className="no-video">暂时没有视频</p>
+                            }
+                        </div>
+                    )
+                }
 
                 {
-                    /*reqData.videos.map((item,index) => {
-                        return (<div key={index} className="video-wrap" style={{display: isActiveVideo === index}}>
+                    reqData.videos.map((item,index) => {
+                        return (<div key={index} className="video-wrap" style={{display: isActiveVideo === index ? 'block':'none'}}>
                                     <video  className="my-video"
                                         src={item.videoUrl}
                                         playsInline
                                         poster={item.coverUrl}
-                                        webkit-playsinline
+                                        webkit-playsinline="true"
                                         x5-video-player-type="h5"
                                         preload="auto"
-                                        x-webkit-airplay
+                                        x-webkit-airplay="true"
                                         loop="loop"
                                         width="100%"
                                         height="100%"
-                                        style={{'object-fit': 'cover'}}
+                                        style={{objectFit: 'cover'}}
                                 ></video>
                             <img src={require("../../assets/image/icon/button/icon_close_opacity.png")} className="close-video" onClick={this.closeVideo.bind(this,index)}/>
                         </div>)
-                    })*/
+                    })
                 }
 
                 <div className="tabbar">
-                    <img src={require("../../assets/image/icon/button/icon_msg@3x.png")} className="img-btn"/>
-                    <img src={require("../../assets/image/icon/button/icon_yy@3x.png")} className="img-btn"/>
-                    <img src={require("../../assets/image/icon/button/icon_gz@3x.png")} className="img-btn"/>
-                    <div className={`video-btn ${reqData.status != 2 ? 'video-not-available':''}`}>
+                    <img src={require("../../assets/image/icon/button/icon_msg@3x.png")} className="img-btn" onClick={this.showMsgBox}/>
+                    <img src={require("../../assets/image/icon/button/icon_yy@3x.png")} className="img-btn" onClick={this.showMsgBox}/>
+                    <img src={require("../../assets/image/icon/button/icon_gz@3x.png")} className="img-btn" onClick={this.showMsgBox}/>
+                    <div className={`video-btn ${reqData.status != 2 ? 'video-not-available' : ''}`} onClick={this.showMsgBox}>
                         <img src={require("../../assets/image/icon/button/icon_video@3x.png")}/>
                         <span>视频聊</span>
                     </div>
                 </div>
 
-                {/*<MyConfirmMsgBox v-model="isMsgBoxShow"></MyConfirmMsgBox>*/}
+                <MyConfirmMsgBox isMsgBoxShow={isMsgBoxShow} hideConfirmMsgBox={this.hideConfirmMsgBox}></MyConfirmMsgBox>
             </div>
         );
     }
